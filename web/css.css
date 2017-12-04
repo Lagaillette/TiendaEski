@@ -1,0 +1,58 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29 nov. 2017, 14:05:54
+    Author     : julien
+*/
+
+form {
+    /* Pour le centrer dans la page */
+    margin: 0 auto;
+    width: 400px;
+    /* Pour voir les limites du formulaire */
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+}
+
+form div + div {
+    margin-top: 1em;
+}
+
+label {
+    display: inline-block;
+    width: 90px;
+    text-align: right;
+}
+
+input, textarea {
+    /* Afin de s'assurer que tous les champs textuels utilisent la même police
+       Par défaut, textarea utilise une police à espacement constant */
+    font: 1em sans-serif;
+
+    /* Pour donner la même dimension à tous les champs textuels */
+    width: 300px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    /* Pour harmoniser l'apparence des bordures des champs textuels */
+    border: 1px solid #999;
+}
+
+.button {
+    /* Pour positionner les boutons de la même manière que les champs textuels */
+    padding-left: 90px; /* même dimension que les étiquettes */
+}
+
+button {
+    /* Cette marge représente approximativement le même espace
+       que celui entre les étiquettes et les champs textuels */
+    margin-left: .5em;
+}
+
+body{
+    background:url(http://www.francophonie.ch/images/fond.jpg) no-repeat
+}

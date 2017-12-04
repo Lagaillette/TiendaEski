@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>PRESUPUESTOS PARA ALQUILER</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css.css" type="text/css" media="screen" />
+    </head>
+    <body>
+        <h1 style="text-align: center">Alquiler de Material de Eski</h1>
+        <img src="https://orig00.deviantart.net/393c/f/2011/131/5/d/random_logo_concept_by_naraosga-d3g51r9.png" style="margin-left: auto;
+    margin-right: auto;display: block; width:100px; height: 100px;"/>
+        <div style="margin-bottom: 3%">
+            <img src="http://www.france-montagnes.com/sites/default/files/pages/bureau/ski-tout-compris.png" style="width: 21%; margin-right: 6%; margin-left: 6% "/>
+            <img src="http://i.f1g.fr/media/figaro/805x453_crop/2016/12/30/XVM5d23fe2c-ce89-11e6-ad51-8a0dd95baea1.jpg" style="width: 21%; margin-right: 6%; margin-left: 6% "/>
+            <img src="http://www.tignes.net/uploads/media/footer/0001/69/e1eb3173c66a032eb07e95e9e217ce0b8f4618ca.jpeg" style="width: 21%; margin-right: 6%; margin-left: 6% "/>
+        </div>
+        <form action="Presupuesto" method="POST">
+            <div>
+                <label for="nombre">Nombre :</label>
+                <input type="text" name="nombre" required>
+            </div>
+            <div>
+                <label for="numeroEskis">Numero de par de eski :</label>
+                <input type="number" name="numeroEskis" required>
+            </div>
+            <div>
+                <label for="numeroPalos">Numero de par de palos :</label>
+                <input type="number" name="numeroPalos" required>
+            </div>
+            <div>
+                <label for="numeroBotas">Numero de par de botas :</label>
+                <input type="number" name="numeroBotas" required/>
+            </div>
+            <div>
+                <label for="numeroSnowboards">Numero de tabla de snowboard :</label>
+                <input type="number" name="numeroSnowboards" required/>
+            </div>
+            <div>
+                <label for="numeroDias">Numero de dias :</label>
+                <input type="number" name="numeroDias" required/>
+            </div>
+            <div class="button">
+                <button type="submit">Presupuesto</button>
+            </div>
+        </form>
+    </body>
+</html>

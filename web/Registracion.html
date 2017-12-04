@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>REGISTRACION</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css.css" type="text/css" media="screen" />
+    </head>
+    <body>
+        <p>
+            <% 
+            String nombre = (String) request.getAttribute("nombre");
+            output.println(nombre);
+            %>
+        </p>
+        
+        <h1 style="text-align: center">Registracion de tu presupuesto</h1>
+        <form action="Registracion" method="POST">
+            <div> <input type="hidden" value=nombre name="nombre"> </div>
+                
+                <div>
+               <label for="apellidos">Apellidos :</label>
+               <input type="text" name="apellidos" required>
+               </div>
+                <div>
+                <label for="email">email :</label>
+               <input type="email" name="email" required/>
+               </div>
+                <div>
+                <label for="numeroTelefono">Numero de telefono :</label>
+                <input type="tel" name="numeroTelefono" required/>
+               </div>
+                <div class="button">
+                <button type="submit">Presupuesto</button>
+                </div>
+                </form>
+    </body>
+</html>
+
+
