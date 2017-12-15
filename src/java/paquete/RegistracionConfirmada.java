@@ -109,6 +109,20 @@ public class RegistracionConfirmada extends HttpServlet {
             }
             }
             
+            if(datoscorrect == false){
+            out.println("<html><head><title>RegistracionInadecuada"
+        + "</title></head><body>\n");
+            out.println("<h1>Datos no correctos</h1>");
+            out.println("<a href=\"formulario.html\">Inicio </a>");
+        out.println("</body>");
+            }else{
+        out.println("<html><head><title>RegistracionConfirmada"
+        + "</title></head><body>\n");
+         out.println("<h1>Gracias " + nombre + apellidos + ". \nSe ha registrado la reserva de su material\n" +
+"de esquí por el coste total de " + costeTotal + " euros. \n GRACIAS por disfrutar de tu tiempo libre con nosotros</h1>");
+         out.println("</body>");
+            }
+            
 
         String bd = "jdbc:mysql://localhost:3306/tiendaeski";
         try {
