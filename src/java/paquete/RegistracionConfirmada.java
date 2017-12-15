@@ -88,52 +88,54 @@ public class RegistracionConfirmada extends HttpServlet {
         int costeTotal = Integer.parseInt(request.getParameter("costeTotal"));
         String apellidos = request.getParameter("apellidos");
         String email = request.getParameter("email");
-        String telefono = request.getParameter("telefono");
+        String telefono = request.getParameter("numeroTelefono");
         
         
-        String bd = "jdbc:mysql://localhost/tiendaEski";
+            //CHECK
+            boolean datoscorrect = false;
+            
+            if(nombre.length()!=0 || numeroDias!=0 || (numeroEskis!=0 || numeroBotas!=0 || numeroPalos!=0 || numeroSnowboards!=0) && apellidos.length()!=0 && nombre.contains("[0-9]+")==false && apellidos.contains("[0-9]+")==false)
+            {
+                
+            if(telefono.length()==9 && telefono.matches("[0-9]+")){ 
+                
+                if(telefono.startsWith("7") || telefono.startsWith("6")){                    
+                    if(email.length()!=0){                        
+                        if(email.matches("(.*)@(.*)") && !email.endsWith("@") && !email.startsWith("@")){
+                        datoscorrect = true;                        
+                        }                    
+                    }                    
+                }
+            }
+            }
+            
+
+        String bd = "jdbc:mysql://localhost:3306/tiendaeski";
         try {
         Class.forName("com.mysql.jdbc.Driver"); // Driver de mysql
         // Conexión usando usuario y clave de administrador de la BD
-        conexionBD = DriverManager.getConnection(bd, "root","root");
+       
         }
         catch(Exception e){
         // Error en la conexión con la BD
-        System.out.println("Error de conexión");
+        System.out.println(e);
         }
-         ResultSet resultados = null;
-        try {
-        String con;
-        Statement s = conexionBD.createStatement();
-        // Consulta SQL
-        con = "SELECT * FROM `reservas`";
-        resultados = s.executeQuery(con);
-        int res;
-        while(resultados.next()){
-            res = resultados.getInt(1);
-            out.println("<html>\n" +
-            " <head>\n" +
-            "<title>Redirection en htm</title\n" +
-            "<meta http-equiv=\"refresh\" content=\"5; URL=\"http://localhost:8080/Servlet1/formulario.html\">\n" +
-            "</head>\n" +
-            "<body>\n" +
-            " Redirection vers www.manouvelleadresse.com dans "+ res + " secondes.\n" +
-            " </body>\n" +
-            "</html>");
-            }
+        try{
+             conexionBD = DriverManager.getConnection(bd, "user","kebab");
+        }catch(SQLException e){
+            System.out.println(e);
         }
-            
-        catch(Exception e){
-        // Error en al realizar la consulta
-        System.out.println("Error en la petición a la BD");
-        }
-        /**
+        
+        
+        
         ResultSet resultados = null;
         try {
+        System.out.println("---------------------------hello");
+        //      (id int NOT NULL AUTO_INCREMENT, num_esquis int,num_palos int,num_botas int, num_snowboards int, coste_total int, nombre VARCHAR(40), apellidos VARCHAR(40), email VARCHAR(40), telefono int, PRIMARY KEY (id))
         String con;
         Statement s = conexionBD.createStatement();
         // Operación SQL sobre la base de datos
-        con = "INSERT INTO RESERVAS (num_esquis,num_palos,num_botas, num_snowboards, coste_total, nombre, apellidos, email, telefono) VALUES (?,?,?,?,?,?,?,?,?)";
+        con = "INSERT INTO RESERVAS (num_esquis,num_palos,num_botas, num_snowboards, coste_total, nombre, apellidos, email) VALUES (?,?,?,?,?,?,?,?)";
         PreparedStatement preparedStmt = conexionBD.prepareStatement(con);
         preparedStmt.setInt (1, numeroEskis);
         preparedStmt.setInt (2, numeroPalos);
@@ -143,7 +145,7 @@ public class RegistracionConfirmada extends HttpServlet {
         preparedStmt.setString (6, nombre);
         preparedStmt.setString (7, apellidos);
         preparedStmt.setString (8, email);
-        preparedStmt.setString (9, telefono);
+        //preparedStmt.setInt (9, telefono);
         preparedStmt.executeUpdate();
         }
         catch(Exception e){
@@ -151,7 +153,7 @@ public class RegistracionConfirmada extends HttpServlet {
         System.out.println("No se ha completado la operación");
         }
         //conexionBD.close(); // Cerrar conexión
-        **/
+        
         
 
     /**
@@ -164,5 +166,6 @@ public class RegistracionConfirmada extends HttpServlet {
         return "Short description";
     }// </editor-fold>
     * */
+    
 }
 }
