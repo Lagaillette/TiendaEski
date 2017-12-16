@@ -5,7 +5,12 @@
  */
 package paquete;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -73,11 +78,35 @@ public class Presupuesto extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+        int[] preciosUnDia = new int[4];
+        int[] preciosDosTresDias = new int[4];
+        int[] preciosMasDeTresDias = new int[4];
+        try{
+                InputStream ips=new FileInputStream(new File("D:\\Documents\\NetBeansProjects\\Servlet1\\src\\java\\paquete\\precios.txt")); 
+                InputStreamReader ipsr=new InputStreamReader(ips);
+                BufferedReader br=new BufferedReader(ipsr);
+                String ligne;
+                int i=0;
+                while ((ligne=br.readLine())!=null){
+                    if(i<4){
+                        preciosUnDia[i] = Integer.parseInt(ligne);
+                    }
+                    if(i>3 && i<8){
+                       preciosDosTresDias[i-4] = Integer.parseInt(ligne); 
+                    }
+                    
+                    if(i>7){
+                        preciosMasDeTresDias[i-8] = Integer.parseInt(ligne);
+                    }
+                    i++;
+                }
+                br.close(); 
+        }		
+        catch (Exception e){
+                System.out.println(e.toString());
+        }
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        int[] preciosUnDia = {15,4,10,16};
-        int[] preciosDosTresDias = {13,3,9,15};
-        int[] preciosMasDeTresDias = {11,3,8,14};
         String nombre = request.getParameter("nombre");
         int numeroDias = Integer.parseInt(request.getParameter("numeroDias")); 
         int numeroEskis= Integer.parseInt(request.getParameter("numeroEskis")); 
@@ -99,8 +128,10 @@ public class Presupuesto extends HttpServlet {
             }
         }
         out.println("<html><head><title>Presupuesto"
-        + "</title></head><body>\n" +
-        "<h1>El alquiler de " + request.getParameter("nombre")+ " del material escogido es de: "+ result +"</h1>" +
+        + "</title><head><link rel=\"stylesheet\" href=\"css.css\" type=\"text/css\" media=\"screen\" /></head><body>\n"); 
+        
+        out.println("<form action=\"Registracion\" method=\"POST\" style=\"margin-top: 20px\">");
+        out.println("<h1>El alquiler de " + request.getParameter("nombre")+ " del material escogido es de: "+ result +"</h1>" +
         "<h1>Detalle de material para 2 días:</h1><br/>");
         if(numeroEskis > 0){
             out.println(numeroEskis + " par de Eskis <br/>" );
@@ -114,8 +145,8 @@ public class Presupuesto extends HttpServlet {
         if(numeroSnowboards > 0){
             out.println(numeroSnowboards + " planchas de Snowboard <br/>" );
         }
-        out.println("<form action=\"Registracion\" method=\"POST\" style=\"margin-top: 20px\">"
-                +"<div> <input type=\"hidden\" value=" + nombre + " name=\"nombre\" </div>"
+                
+                out.println("<div> <input type=\"hidden\" value=" + nombre + " name=\"nombre\" </div>"
                 +"<div> <input type=\"hidden\" value=" + request.getParameter("numeroEskis") + " name=\"numeroEskis\" </div>"
                 +"<div> <input type=\"hidden\" value=" + request.getParameter("numeroBotas") + " name=\"numeroBotas\" </div>"
                 +"<div> <input type=\"hidden\" value=" + request.getParameter("numeroPalos") + " name=\"numeroPalos\" </div>"
@@ -123,10 +154,11 @@ public class Presupuesto extends HttpServlet {
                 +"<div> <input type=\"hidden\" value=" + request.getParameter("numeroSnowboards") + " name=\"numeroSnowboards\" </div>"
                 +"<div> <input type=\"hidden\" value=" + result + " name=\"costeTotal\" </div>"
                 + "<div class=\"button\">\n" +
-                "<button type=\"submit\">Presupuesto</button>\n" +
+                "<button type=\"submit\" style=\" margin-left: -22% ; margin-top: 10%\">Presupuesto</button>\n" +
                 "</div>"
                 +"</form>");
         out.println("<br/><a href=\"formulario.html\">Inicio </a>");
+        out.println("</body> </html>");
         }
     }
 

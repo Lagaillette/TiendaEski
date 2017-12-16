@@ -86,11 +86,8 @@ public class Registracion extends HttpServlet {
         int numeroSnowboards = Integer.parseInt(request.getParameter("numeroSnowboards")); 
         int costeTotal = Integer.parseInt(request.getParameter("costeTotal"));
         out.println("<html><head><title>Registracion"
-        + "</title></head><body>\n");
+        + "</title><head><link rel=\"stylesheet\" href=\"css.css\" type=\"text/css\" media=\"screen\" /> </head><body>\n");
         out.println("<form action=\"RegistracionConfirmada\" method=\"POST\">"
-                +"<div>\n" +
-"               <label for=\"nombre\">Nombre : " + nombre + " </label>\n"
-                +"<div>\n" 
                 +"<div> <input type=\"hidden\" value=" + nombre + " name=\"nombre\" </div>"
                 +"<div> <input type=\"hidden\" value=" + request.getParameter("numeroEskis") + " name=\"numeroEskis\" </div>"
                 +"<div> <input type=\"hidden\" value=" + request.getParameter("numeroBotas") + " name=\"numeroBotas\" </div>"
