@@ -11,15 +11,17 @@ and open the template in the editor.
 form {
     /* Pour le centrer dans la page */
     margin: 0 auto;
-    width: 400px;
+    width: 500px;
     /* Pour voir les limites du formulaire */
     padding: 1em;
     border: 1px solid #CCC;
     border-radius: 1em;
+    background-color: whitesmoke;
 }
 
 form div + div {
     margin-top: 1em;
+    
 }
 
 label {
@@ -54,5 +56,6 @@ button {
 }
 
 body{
-    background:url(http://www.francophonie.ch/images/fond.jpg) no-repeat
+    background:url(http://www.scar.fr/ImgWeb/DEFAULT_FOND_PAGE.jpg);
+    opacity:0.75;
 }

@@ -109,19 +109,6 @@ public class RegistracionConfirmada extends HttpServlet {
             }
             }
             
-            if(datoscorrect == false){
-            out.println("<html><head><title>RegistracionInadecuada"
-        + "</title></head><body>\n");
-            out.println("<h1>Datos no correctos</h1>");
-            out.println("<a href=\"formulario.html\">Inicio </a>");
-        out.println("</body>");
-            }else{
-        out.println("<html><head><title>RegistracionConfirmada"
-        + "</title></head><body>\n");
-         out.println("<h1>Gracias " + nombre + apellidos + ". \nSe ha registrado la reserva de su material\n" +
-"de esquí por el coste total de " + costeTotal + " euros. \n GRACIAS por disfrutar de tu tiempo libre con nosotros</h1>");
-         out.println("</body>");
-            }
             
 
         String bd = "jdbc:mysql://localhost:3306/tiendaeski";
@@ -144,12 +131,12 @@ public class RegistracionConfirmada extends HttpServlet {
         
         ResultSet resultados = null;
         try {
-        System.out.println("---------------------------hello");
+        
         //      (id int NOT NULL AUTO_INCREMENT, num_esquis int,num_palos int,num_botas int, num_snowboards int, coste_total int, nombre VARCHAR(40), apellidos VARCHAR(40), email VARCHAR(40), telefono int, PRIMARY KEY (id))
         String con;
         Statement s = conexionBD.createStatement();
         // Operación SQL sobre la base de datos
-        con = "INSERT INTO RESERVAS (num_esquis,num_palos,num_botas, num_snowboards, coste_total, nombre, apellidos, email) VALUES (?,?,?,?,?,?,?,?)";
+        con = "INSERT INTO RESERVAS (num_esquis,num_palos,num_botas, num_snowboards, coste_total, nombre, apellidos, email, telefono) VALUES (?,?,?,?,?,?,?,?,?)";
         PreparedStatement preparedStmt = conexionBD.prepareStatement(con);
         preparedStmt.setInt (1, numeroEskis);
         preparedStmt.setInt (2, numeroPalos);
@@ -159,12 +146,31 @@ public class RegistracionConfirmada extends HttpServlet {
         preparedStmt.setString (6, nombre);
         preparedStmt.setString (7, apellidos);
         preparedStmt.setString (8, email);
-        //preparedStmt.setInt (9, telefono);
+        preparedStmt.setInt (9, Integer.parseInt(telefono));
         preparedStmt.executeUpdate();
+        
+        out.println("<html><head><title>RegistracionConfirmada"
+        + "</title></head><body>\n");
+         out.println("<h1>Gracias " + nombre + apellidos + ". \nSe ha registrado la reserva de su material\n" +
+"de esquí por el coste total de " + costeTotal + " euros. \n GRACIAS por disfrutar de tu tiempo libre con nosotros</h1>");
+         out.println("</body>");
         }
         catch(Exception e){
         // Error al realizar la operación
         System.out.println("No se ha completado la operación");
+        if(datoscorrect == false){
+            out.println("<html><head><title>RegistracionInadecuada"
+        + "</title></head><body>\n");
+            out.println("<h1>Datos no correctos</h1>");
+            out.println("<a href=\"formulario.html\">Inicio </a>");
+        out.println("</body>");
+            }else{        
+            out.println("<html><head><title>RegistracionInadecuada"
+        + "</title></head><body>\n");
+            out.println("<h1>Algo no funciona</h1>");
+            out.println("<a href=\"formulario.html\">Inicio </a>");
+        out.println("</body>");
+        }
         }
         //conexionBD.close(); // Cerrar conexión
         

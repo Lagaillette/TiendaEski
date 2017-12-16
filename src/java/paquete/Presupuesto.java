@@ -82,7 +82,7 @@ public class Presupuesto extends HttpServlet {
         int[] preciosDosTresDias = new int[4];
         int[] preciosMasDeTresDias = new int[4];
         try{
-                InputStream ips=new FileInputStream(new File("D:\\Documents\\NetBeansProjects\\Servlet1\\src\\java\\paquete\\precios.txt")); 
+                InputStream ips=new FileInputStream(new File("D:\\TiendaEski\\TiendaEski\\src\\java\\paquete\\precios.txt")); 
                 InputStreamReader ipsr=new InputStreamReader(ips);
                 BufferedReader br=new BufferedReader(ipsr);
                 String ligne;
