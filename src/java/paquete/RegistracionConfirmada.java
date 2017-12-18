@@ -150,9 +150,9 @@ public class RegistracionConfirmada extends HttpServlet {
         preparedStmt.executeUpdate();
         
         out.println("<html><head><title>RegistracionConfirmada"
-        + "</title></head><body>\n");
+        + "</title><head><link rel=\"stylesheet\" href=\"css.css\" type=\"text/css\" media=\"screen\" /><meta http-equiv=\"refresh\" content=\"3; URL=formulario.html\"> </head><body>\n");
          out.println("<h1>Gracias " + nombre + apellidos + ". \nSe ha registrado la reserva de su material\n" +
-"de esquí por el coste total de " + costeTotal + " euros. \n GRACIAS por disfrutar de tu tiempo libre con nosotros</h1>");
+        "de esquí por el coste total de " + costeTotal + " euros. \n GRACIAS por disfrutar de tu tiempo libre con nosotros</h1>");
          out.println("</body>");
         }
         catch(Exception e){
@@ -160,13 +160,13 @@ public class RegistracionConfirmada extends HttpServlet {
         System.out.println("No se ha completado la operación");
         if(datoscorrect == false){
             out.println("<html><head><title>RegistracionInadecuada"
-        + "</title></head><body>\n");
+        + "</title><head><link rel=\"stylesheet\" href=\"css.css\" type=\"text/css\" media=\"screen\" /> </head><body>\n");
             out.println("<h1>Datos no correctos</h1>");
             out.println("<a href=\"formulario.html\">Inicio </a>");
         out.println("</body>");
             }else{        
             out.println("<html><head><title>RegistracionInadecuada"
-        + "</title></head><body>\n");
+        + "</title><head><link rel=\"stylesheet\" href=\"css.css\" type=\"text/css\" media=\"screen\" /> </head><body>\n");
             out.println("<h1>Algo no funciona</h1>");
             out.println("<a href=\"formulario.html\">Inicio </a>");
         out.println("</body>");
